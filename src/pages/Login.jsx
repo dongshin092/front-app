@@ -1,10 +1,22 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { loginUser } from '../service/authService';
+import useAuthStore from '../store/authStore';
 
 function Login() {
   const navigate = useNavigate();
+  const setLogin = useAuthStore((state) => state.login);
+  const [userId, setUserId] = useState('');
+  const [passwd, setPasswd] = useState('');
 
-  const handleLogin = () => {
-    navigate('/');
+  const handleLogin = async () => {
+    try {
+      const data = await loginUser(userId, passwd);
+      setLogin(data);
+      navigate('/');
+    } catch {
+      alert('로그인에 실패했습니다.');
+    }
   };
 
   const goJoin = () => {
@@ -21,6 +33,8 @@ function Login() {
             <label className="text-sm font-medium text-[#1A1A1A]">아이디</label>
             <input
               type="text"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
               placeholder="ID를 입력하세요"
               className="h-11 rounded-lg border border-[#E5E7EB] px-3.5 text-sm text-[#1A1A1A] placeholder:text-[#6B7280]"
             />
@@ -30,6 +44,8 @@ function Login() {
             <label className="text-sm font-medium text-[#1A1A1A]">비밀번호</label>
             <input
               type="password"
+              value={passwd}
+              onChange={(e) => setPasswd(e.target.value)}
               placeholder="비밀번호를 입력하세요"
               className="h-11 rounded-lg border border-[#E5E7EB] px-3.5 text-sm text-[#1A1A1A] placeholder:text-[#6B7280]"
             />

@@ -7,5 +7,12 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     open: true,
+    proxy: {
+      '/api': {
+        target: 'https://sell-books.shop',
+        changeOrigin: true,
+        secure: true,
+      },
+    },
   },
 })

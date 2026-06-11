@@ -7,6 +7,10 @@ function Login() {
     navigate('/');
   };
 
+  const goJoin = () => {
+    navigate('/join');
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#F9FAFB]">
       <div className="flex w-[400px] flex-col gap-6 rounded-xl border border-[#E5E7EB] bg-white p-10">
@@ -43,7 +47,12 @@ function Login() {
 
           <div className="flex items-center justify-center gap-1.5">
             <span className="text-[13px] text-[#6B7280]">계정이 없으신가요?</span>
-            <span className="text-[13px] font-semibold text-[#7C3AED]">회원가입</span>
+            <span
+              onClick={goJoin}
+              className="cursor-pointer text-[13px] font-semibold text-[#7C3AED]"
+            >
+              회원가입
+            </span>
           </div>
         </div>
       </div>

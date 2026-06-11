@@ -4,6 +4,7 @@ import Main from '../pages/Main';
 import Board from '../pages/Board';
 import Member from '../pages/Member';
 import Login from '../pages/Login';
+import Join from '../pages/Join';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path: '/join',
+    element: <Join />,
   },
 ]);
 
